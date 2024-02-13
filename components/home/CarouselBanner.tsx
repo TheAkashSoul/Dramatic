@@ -12,7 +12,7 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 
-export default function CarouselDemo() {
+export default function CarouselBanner() {
   const autoplay = useCallback(
     Autoplay({
       delay: 2000,

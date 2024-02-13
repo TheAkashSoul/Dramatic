@@ -8,7 +8,7 @@ import { Bell, CircleUserRound } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="bg-black/75 backdrop-blur-md h-16 flex items-center justify-between flex-row fixed top-0 left-0 w-full z-50">
+    <header className="bg-[#504179]/30 backdrop-blur-lg h-16 flex items-center justify-between flex-row fixed top-0 left-0 w-full z-50">
       <div className="flex flex-row space-x-6 items-center">
         <Link href={"/"} className="relative h-5 w-20 mx-20">
           <Image src={logo} alt="logo" layout="fill" />
@@ -16,26 +16,26 @@ export default function Header() {
 
         <Link
           className="text-[#A1B1CB] text-xs font-semibold hover:text-[#FFFFFF]"
-          href={"/"}
+          href="/home"
         >
           HOME
         </Link>
         <Link
           className="text-[#A1B1CB] text-xs font-semibold hover:text-[#FFFFFF]"
-          href={"/"}
+          href="/movies"
         >
           MOVIES
         </Link>
         <Link
           onClick={() => console.log("hii")}
           className="text-[#A1B1CB] text-xs font-semibold hover:text-[#FFFFFF]"
-          href={"/"}
+          href="/tvshow"
         >
           TV SHOW
         </Link>
         <Link
           className="text-[#A1B1CB] text-xs font-semibold hover:text-[#FFFFFF]"
-          href={"/"}
+          href="/mylist"
         >
           MY LIST
         </Link>
