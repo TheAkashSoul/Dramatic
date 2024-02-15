@@ -5,7 +5,7 @@ export default function Banner() {
   return (
     <main className="text-[#FFFFFF]">
       <div
-        className="relative bg-cover bg-center px-8 md:px-0 md:mx-20 h-[500px] md:h-[700px] flex flex-col items-start justify-center"
+        className="relative bg-cover bg-center px-8 md:px-0 lg:mx-20 md:mx-6 h-[500px] md:h-[700px] flex flex-col items-start justify-center"
         style={{
           backgroundImage:
             "url('https://image.tmdb.org/t/p/original/8YFL5QQVPy3AgrEQxNYVSgiPEbe.jpg')",
