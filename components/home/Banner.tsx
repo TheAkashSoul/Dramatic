@@ -32,18 +32,17 @@ export default function Banner() {
           <p className="font-medium text-sm">Romance Drama Action</p>
 
           <div className="flex flex-col w-fit md:flex-row gap-3 mt-3">
-            <button className="bg-[#5436A9] px-4 py-2 rounded-full text-sm items-center justify-center flex flex-row gap-1">
+            <button className="bg-[#5436A9] px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1">
               WATCH
               <FaPlay size={16} />
             </button>
-            <button className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-sm items-center justify-center flex flex-row gap-1">
+            <button className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1">
               MY LIST
               <FaPlus size={16} />
             </button>
           </div>
         </div>
       </div>
-      <div>ijiji</div>
     </main>
   );
 }

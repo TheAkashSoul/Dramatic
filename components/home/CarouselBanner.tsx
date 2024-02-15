@@ -11,17 +11,18 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
+import Banner from "./Banner";
 
 export default function CarouselBanner() {
   const autoplay = useCallback(
     Autoplay({
-      delay: 2000,
+      delay: 3000,
     }),
     []
   );
   return (
     <Carousel
-      className="w-full max-w-xs"
+      className="w-full"
       plugins={[autoplay]}
       opts={{
         align: "start",
@@ -29,17 +30,45 @@ export default function CarouselBanner() {
       }}
     >
       <CarouselContent>
-        {Array.from({ length: 10 }).map((_, index) => (
-          <CarouselItem key={index}>
-            <div className="p-1">
-              <Card>
-                <CardContent className="flex aspect-square items-center justify-center p-6">
-                  <span className="text-4xl font-semibold">{index + 1}</span>
-                </CardContent>
-              </Card>
-            </div>
-          </CarouselItem>
-        ))}
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
+
+        <CarouselItem>
+          <Banner />
+        </CarouselItem>
       </CarouselContent>
     </Carousel>
   );
