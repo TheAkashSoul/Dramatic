@@ -12,8 +12,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import Banner from "./Banner";
+import { Movie } from "@/lib/types";
 
-export default function CarouselBanner() {
+export default function CarouselBanner({
+  trendingMovies,
+}: {
+  trendingMovies: any;
+}) {
   const autoplay = useCallback(
     Autoplay({
       delay: 3000,
@@ -30,45 +35,11 @@ export default function CarouselBanner() {
       }}
     >
       <CarouselContent>
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
-
-        <CarouselItem>
-          <Banner />
-        </CarouselItem>
+        {trendingMovies?.map((movie: { id: React.Key | null | undefined }) => (
+          <CarouselItem key={movie.id}>
+            <Banner movies={movie} />
+          </CarouselItem>
+        ))}
       </CarouselContent>
     </Carousel>
   );

@@ -19,34 +19,15 @@ export default function Header() {
 
         <Link
           className={`text-xs hover:text-[#FFFFFF] ${
-            pathName === "/home"
+            pathName === "/"
               ? "text-[#FFFFFF] font-semibold"
               : "text-[#A1B1CB] font-medium"
           } `}
-          href="/home"
+          href="/"
         >
           HOME
         </Link>
-        <Link
-          className={`text-xs hover:text-[#FFFFFF] ${
-            pathName === "/movies"
-              ? "text-[#FFFFFF] font-semibold"
-              : "text-[#A1B1CB] font-medium"
-          } `}
-          href="/movies"
-        >
-          MOVIES
-        </Link>
-        <Link
-          className={`text-xs hover:text-[#FFFFFF] ${
-            pathName === "/tvshow"
-              ? "text-[#FFFFFF] font-semibold"
-              : "text-[#A1B1CB] font-medium"
-          } `}
-          href="/tvshow"
-        >
-          TV SHOW
-        </Link>
+
         <Link
           className={`text-xs hover:text-[#FFFFFF] ${
             pathName === "/mylist"
