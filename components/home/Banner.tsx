@@ -16,6 +16,8 @@ export default function Banner({ movies }: { movies: any }) {
 
   const movieGenreNames = getGenreNamesByIds(movies.genre_ids);
 
+  // console.log("Done")
+
   return (
     <main className="text-[#FFFFFF]">
       <div
