@@ -10,11 +10,12 @@ import {
 
 import CarouselCard from "./CarouselCard";
 
-type prop = {
+type props = {
   category: string;
+  data: any;
 };
 
-export default function CarouselContainer({ category }: prop) {
+export default function CarouselContainer({ category, data }: props) {
   return (
     <main className="lg:mx-20 mx-6">
       <div className="my-2 pl-2">
@@ -29,71 +30,16 @@ export default function CarouselContainer({ category }: prop) {
         className="w-full"
       >
         <CarouselContent>
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
-
-          <CarouselItem className="basis-1/2 md:basis-1/5 lg:basis-1/6">
-            <div className="p-1">
-              <CarouselCard />
-            </div>
-          </CarouselItem>
+          {data?.map((movie: any) => (
+            <CarouselItem
+              key={movie.id}
+              className="basis-1/4 md:basis-1/5 lg:basis-1/6"
+            >
+              <div className="p-1">
+                <CarouselCard data={movie} />
+              </div>
+            </CarouselItem>
+          ))}
         </CarouselContent>
         <CarouselPrevious className="absolute left-0 lg:-left-8 hidden md:flex" />
         <CarouselNext className="absolute right-0 lg:-right-8 hidden md:flex" />

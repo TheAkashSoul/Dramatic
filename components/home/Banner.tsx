@@ -1,5 +1,6 @@
 import genresData from "@/lib/genresData";
-import { FaPlay } from "react-icons/fa6";
+import Link from "next/link";
+import { MdOutlineArrowForwardIos } from "react-icons/md";
 import { FaPlus } from "react-icons/fa6";
 
 export default function Banner({ movies }: { movies: any }) {
@@ -15,8 +16,6 @@ export default function Banner({ movies }: { movies: any }) {
   };
 
   const movieGenreNames = getGenreNamesByIds(movies.genre_ids);
-
-  // console.log("Done")
 
   return (
     <main className="text-[#FFFFFF]">
@@ -49,10 +48,16 @@ export default function Banner({ movies }: { movies: any }) {
           </div>
 
           <div className="flex flex-col w-fit md:flex-row gap-3 mt-3">
-            <button className="bg-[#5436A9] px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1">
-              WATCH
-              <FaPlay size={16} />
-            </button>
+            <Link
+              href={{
+                pathname: "/stream",
+                query: { movie: JSON.stringify(movies) },
+              }}
+              className="bg-[#5436A9] px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1"
+            >
+              DETAILS
+              <MdOutlineArrowForwardIos size={16} />
+            </Link>
             <button className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1">
               MY LIST
               <FaPlus size={16} />

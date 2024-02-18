@@ -4,24 +4,36 @@ import Image from "next/image";
 import Link from "next/link";
 import { GoPlusCircle } from "react-icons/go";
 
-export default function CarouselCard() {
+export default function CarouselCard({ data }: any) {
+  const poster = `https://image.tmdb.org/t/p/original/${data.poster_path}`;
   return (
     <div className="bg-[#05080B] w-fit rounded-md overflow-hidden">
-      <Link href={"/stream"}>
-        <div className="lg:w-44 lg:h-56 md:w-40 md:h-48 w-32 h-40 relative overflow-hidden rounded-md">
+      <Link
+        href={{
+          pathname: "/stream",
+          query: { movie: JSON.stringify(data) },
+        }}
+      >
+        <div className="w-full overflow-hidden rounded-md">
           <Image
-            src="https://image.tmdb.org/t/p/original/wDWwtvkRRlgTiUr6TyLSMX8FCuZ.jpg"
+            src={poster}
             alt="Image"
-            layout="fill"
+            height={400}
+            width={300}
+            className="object-cover"
           />
         </div>
       </Link>
 
       <div className="flex flex-col p-1">
-        <p className="font-semibold text-sm">Scream VI</p>
-        <p className="font-thin text-xs">2019</p>
+        <p className="font-semibold text-sm line-clamp-1">
+          {data.original_title}
+        </p>
+        <p className="font-thin text-xs">{data.release_date.slice(0, 4)}</p>
         <div className="flex flex-row items-center justify-between">
-          <p className="text-[#FFC907] font-medium text-sm">9.1</p>
+          <p className="text-[#FFC907] font-medium text-sm">
+            {data.vote_average.toFixed(1)}
+          </p>
           <button
             onClick={() => console.log("added")}
             className="p-2 hover:text-[#FFC907]"

@@ -1,33 +1,55 @@
-import CarouselContainer from "@/components/common/CarouselContainer";
+// import CarouselContainer from "@/components/common/CarouselContainer";
+import genresData from "@/lib/genresData";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
 
-export default function Stream() {
+type props = {
+  searchParams: {
+    movie: any;
+  };
+};
+
+export default async function Stream({ searchParams: { movie } }: props) {
+  const newMovie = JSON.parse(movie);
+  const poster = `https://image.tmdb.org/t/p/original/${newMovie.poster_path}`;
+
+  const getGenreNamesByIds = (genreIds: number[]) => {
+    return newMovie.genre_ids.map((id: number) => {
+      const genre = genresData.genres.find((genre) => genre.id === id);
+      return genre ? genre.name : "Unknown Genre";
+    });
+  };
+
+  const movieGenreNames = getGenreNamesByIds(newMovie.genre_ids);
   return (
     <main className="mt-20 text-white">
       <div className="flex md:flex-row flex-col items-start gap-10 mx-6 md:mx-20">
-        <div className="relative h-64 w-48">
+        <div className="w-fit overflow-hidden">
           <Image
-            src="https://image.tmdb.org/t/p/original/wDWwtvkRRlgTiUr6TyLSMX8FCuZ.jpg"
+            src={poster}
             alt="image"
-            layout="fill"
+            height={300}
+            width={240}
+            className="object-cover"
           />
         </div>
 
         <div className="w-full md:w-[60%] mb-4">
-          <h2 className="font-bold lg:text-3xl mb-4">
-            Ant-Man and the Wasp: Quantumania
+          <h2 className="font-bold text-xl md:text-3xl mb-4">
+            {newMovie.original_title}
           </h2>
           <p className="text-xs md:text-sm mb-3 font-light">
-            Super-Hero partners Scott Lang and Hope van Dyne, along with with
-            Hope&apos;s parents Janet van Dyne and Hank Pym, and Scott&apos;s
-            daughter Cassie Lang, find themselves exploring the Quantum Realm,
-            interacting with strange new creatures and embarking on an adventure
-            that will push them beyond the limits of what they thought possible.
+            {newMovie.overview}
           </p>
           <p className="font-medium text-base text-[#9F1D00]">GENRES</p>
-          <p className="font-medium text-sm">Romance Drama Action</p>
+          <div className="flex flex-row gap-3 flex-wrap">
+            {movieGenreNames?.map((genreName: string, index: number) => (
+              <p key={index} className="font-medium text-sm">
+                {genreName}
+              </p>
+            ))}
+          </div>
 
           <div className="flex flex-col w-fit md:flex-row gap-3 mt-3">
             <button className="bg-[#5436A9] px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1">
@@ -39,38 +61,35 @@ export default function Stream() {
               <FaPlus size={16} />
             </button>
           </div>
-        </div>
-      </div>
 
-      <div className="flex flex-col lg:flex-row my-6 lg:items-center gap-10 mx-6 md:mx-20">
-        <div className="flex flex-col w-full lg:w-[40%]">
-          <div className="flex flex-row gap-3 mt-5 mb-3 items-center">
-            <p className="text-[#FFFFFF] font-medium text-lg">9.1</p>
-            <p className="text-[#FFFFFF] font-medium text-base border border-white px-1">
-              U/A
-            </p>
-            <p className="text-[#FFFFFF] font-medium text-base border border-white px-1">
-              4K
-            </p>
-            <p className="text-[#FFFFFF] font-medium text-sm">2019-07-04</p>
-          </div>
-          <div className="flex flex-col mb-3">
-            <p className="font-semibold text-base text-[#9F1D00]">AUDIO</p>
-            <p className="font-medium text-sm">
-              English - Audio Description, English [Original]
-            </p>
-          </div>
-          <div className="flex flex-col mb-5">
-            <p className="font-semibold text-base text-[#9F1D00]">SUBTITLES</p>
-            <p className="font-medium text-sm">English, Hindi</p>
+          <div className="flex flex-col w-full lg:w-[40%]">
+            <div className="flex flex-row flex-wrap gap-3 mt-10 mb-3 items-center">
+              <p className="text-[#D7B438] font-medium text-lg">
+                {newMovie.vote_average.toFixed(1)}
+              </p>
+              <p className="text-[#FFFFFF] font-medium text-base border border-white px-1">
+                U/A
+              </p>
+              <p className="text-[#FFFFFF] font-medium text-base border border-white px-1">
+                4K
+              </p>
+              <p className="text-[#FFFFFF] font-medium text-sm">
+                {newMovie.release_date}
+              </p>
+            </div>
+            <div className="flex flex-col mb-3">
+              <p className="font-semibold text-base text-[#9F1D00]">AUDIO</p>
+              <p className="font-medium text-sm">
+                {newMovie.original_language}
+              </p>
+            </div>
           </div>
         </div>
-        <div>vnnn</div>
       </div>
 
       <div className="mt-20 mb-10">
         <div className="mt-10">
-          <CarouselContainer category="MORE LIKE THIS" />
+          {/* <CarouselContainer category="MORE LIKE THIS" /> */}
         </div>
       </div>
     </main>
