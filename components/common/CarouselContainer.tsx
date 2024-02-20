@@ -33,7 +33,7 @@ export default function CarouselContainer({ category, data }: props) {
           {data?.map((movie: any) => (
             <CarouselItem
               key={movie.id}
-              className="basis-1/4 md:basis-1/5 lg:basis-1/6"
+              className="basis-2/5 md:basis-1/5 lg:basis-1/6"
             >
               <div className="p-1">
                 <CarouselCard data={movie} />

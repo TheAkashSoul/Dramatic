@@ -11,10 +11,13 @@ export default function Header() {
   const pathName = usePathname();
 
   return (
-    <header className="bg-[#504179]/30 backdrop-blur-md h-16 flex items-center justify-between flex-row fixed top-0 left-0 w-full z-50">
+    <header className="bg-[#504179]/30 backdrop-blur-md h-16 hidden md:flex items-center justify-between flex-row fixed top-0 left-0 w-full z-50">
       <div className="flex flex-row space-x-6 items-center">
-        <Link href={"/"} className="relative h-5 w-20 mx-20">
-          <Image src={logo} alt="logo" layout="fill" />
+        <Link
+          href={"/"}
+          className="relative h-5 w-20 lg:ml-20 lg:mr-20 md:ml-8 flex items-center"
+        >
+          <Image src={logo} alt="logo" />
         </Link>
 
         <Link
@@ -40,7 +43,7 @@ export default function Header() {
         </Link>
       </div>
 
-      <div className="flex flex-row space-x-8 mr-20 items-center justify-between">
+      <div className="flex flex-row space-x-8 lg:mr-20 md:mr-8 items-center justify-between">
         <SearchBar />
         <Link href={"/"}>
           <Bell color="#FFFFFF" size={20} />

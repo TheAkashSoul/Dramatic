@@ -17,7 +17,7 @@ export default async function Home() {
   const upcoming = await fetchUpcoming();
 
   return (
-    <main className="bg-[#000000] min-h-screen text-[#FFFFFF] mb-32">
+    <main className="bg-[#000000] min-h-screen text-[#FFFFFF] mb-10 md:mb-20">
       <CarouselBanner trendingMovies={trendingMovie} />
 
       <div className="lg:-mt-40 md:-mt-40 -mt-20 z-40 relative">

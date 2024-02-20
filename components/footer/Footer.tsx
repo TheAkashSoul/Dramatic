@@ -60,7 +60,7 @@ export default function Footer() {
               TALK TO US
             </p>
             <Link className="text-xs font-extralight mt-2" href="/">
-              support@ercom.com
+              support@help.com
             </Link>
             <Link className="text-xs font-extralight mt-2" href="/">
               +66 5544 3322
