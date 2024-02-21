@@ -91,7 +91,7 @@ export default async function Stream({ searchParams: { movie } }: props) {
         </div>
       </div>
 
-      {similarMovies && (
+      {similarMovies.length > 0 && (
         <div className="my-10 md:mt-20">
           <div className="mt-10">
             <CarouselContainer category="MORE LIKE THIS" data={similarMovies} />

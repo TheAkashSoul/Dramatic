@@ -7,6 +7,7 @@ import { FiSearch } from "react-icons/fi";
 import { GiHamburgerMenu } from "react-icons/gi";
 import SearchBar from "./SearchBar";
 import { useState } from "react";
+import useOnclickOutside from "react-cool-onclickoutside";
 
 export default function MobileHeader() {
   const [searchActive, setSearchActive] = useState<boolean>(false);
@@ -21,6 +22,12 @@ export default function MobileHeader() {
     setMenuActive(!menuActive);
     setSearchActive(false);
   };
+
+  const ref = useOnclickOutside(() => {
+    setMenuActive(false);
+    setSearchActive(false);
+  });
+
   return (
     <header className="bg-[#504179]/30 backdrop-blur-md h-16 md:hidden flex items-center fixed top-0 left-0 w-full z-50">
       <div className="flex items-center justify-between flex-row w-full">
@@ -29,24 +36,24 @@ export default function MobileHeader() {
         </Link>
 
         <div className="flex flex-row items-center mr-6 space-x-8">
-          <button onClick={searchToggle}>
+          <button ref={ref} onClick={searchToggle}>
             <FiSearch color="#FFFFFF" size={20} />
           </button>
 
-          <button onClick={menuToggle}>
+          <button ref={ref} onClick={menuToggle}>
             <GiHamburgerMenu color="#FFFFFF" size={20} />
           </button>
         </div>
       </div>
 
       {searchActive && (
-        <div className="absolute top-16 mt-2 z-50">
+        <div ref={ref} className="absolute top-16 mt-2 z-50">
           <SearchMobile />
         </div>
       )}
 
       {menuActive && (
-        <div className="absolute top-16 mt-2 z-50 right-6">
+        <div ref={ref} className="absolute top-16 mt-2 z-50 right-6">
           <MenuMobile toggleMenu={menuToggle} />
         </div>
       )}

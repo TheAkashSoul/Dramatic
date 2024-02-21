@@ -7,7 +7,7 @@ import { GoPlusCircle } from "react-icons/go";
 export default function CarouselCard({ data }: any) {
   const poster = `https://image.tmdb.org/t/p/original/${data.poster_path}`;
   return (
-    <div className="bg-[#05080B] w-fit rounded-md overflow-hidden">
+    <div className="bg-[#05080B] w-fit rounded-md overflow-hidden hover:scale-105 transition-all">
       <Link
         href={{
           pathname: "/stream",
