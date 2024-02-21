@@ -56,3 +56,14 @@ export const fetchSimilarMovieData = async (movie_id: number) => {
     console.log(error);
   }
 };
+
+export const fetchSearchMovieData = async (movie_name: string) => {
+  try {
+    const data = await getApiResponse(`/search/movie?query=${movie_name}`);
+    const SearchMovie = data.results;
+
+    return SearchMovie;
+  } catch (error) {
+    console.log(error);
+  }
+};

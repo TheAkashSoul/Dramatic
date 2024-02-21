@@ -13,7 +13,9 @@ type props = {
 
 export default async function Stream({ searchParams: { movie } }: props) {
   const newMovie = JSON.parse(movie);
-  const poster = `https://image.tmdb.org/t/p/original/${newMovie.poster_path}`;
+  const poster = newMovie.poster_path
+    ? `https://image.tmdb.org/t/p/original/${newMovie.poster_path}`
+    : "https://image.tmdb.org/t/p/original/vbLxDKfo8fYC8ISKKrJczNbGKLP.jpg";
 
   const getGenreNamesByIds = (genreIds: number[]) => {
     return genreIds.map((id: number) => {

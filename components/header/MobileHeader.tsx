@@ -48,7 +48,7 @@ export default function MobileHeader() {
 
       {searchActive && (
         <div ref={ref} className="absolute top-16 mt-2 z-50">
-          <SearchMobile />
+          <SearchMobile onSearch={searchToggle} />
         </div>
       )}
 
@@ -61,11 +61,11 @@ export default function MobileHeader() {
   );
 }
 
-const SearchMobile = () => {
+const SearchMobile = ({ onSearch }: { onSearch: () => void }) => {
   return (
     <main className="w-screen flex items-center justify-center py-1">
       <div className="bg-[#504179]/30 backdrop-blur-md p-1">
-        <SearchBar />
+        <SearchBar onClickSearch={onSearch} />
       </div>
     </main>
   );

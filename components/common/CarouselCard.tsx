@@ -5,7 +5,9 @@ import Link from "next/link";
 import { GoPlusCircle } from "react-icons/go";
 
 export default function CarouselCard({ data }: any) {
-  const poster = `https://image.tmdb.org/t/p/original/${data.poster_path}`;
+  const poster = data.poster_path
+    ? `https://image.tmdb.org/t/p/original/${data.poster_path}`
+    : "https://image.tmdb.org/t/p/original/vbLxDKfo8fYC8ISKKrJczNbGKLP.jpg";
   return (
     <div className="bg-[#05080B] w-fit rounded-md overflow-hidden hover:scale-105 transition-all">
       <Link
