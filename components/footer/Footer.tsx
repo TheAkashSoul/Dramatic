@@ -7,7 +7,7 @@ import { IoLogoTwitter } from "react-icons/io";
 
 export default function Footer() {
   return (
-    <footer className="text-[#FFFFFF] bg-[#161214]">
+    <footer className="text-[#FFFFFF] bg-[#161214] md:mt-28">
       <div className="lg:mx-20 md:mx-6 mx-6 flex flex-col pt-20 pb-6">
         <div className="flex md:flex-row flex-col justify-between items-start mb-20 gap-10">
           <div className="flex flex-row items-center bg-[#362F33] px-2 py-1 gap-2 h-fit cursor-pointer">

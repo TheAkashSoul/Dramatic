@@ -45,3 +45,14 @@ export const fetchUpcoming = async () => {
 //     console.log(error);
 //   }
 // };
+
+export const fetchSimilarMovieData = async (movie_id: number) => {
+  try {
+    const data = await getApiResponse(`/movie/${movie_id}/similar`);
+    const SimilarMovie = data.results;
+
+    return SimilarMovie;
+  } catch (error) {
+    console.log(error);
+  }
+};

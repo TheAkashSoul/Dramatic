@@ -1,4 +1,5 @@
-// import CarouselContainer from "@/components/common/CarouselContainer";
+import { fetchSimilarMovieData } from "@/actions/movieData";
+import CarouselContainer from "@/components/common/CarouselContainer";
 import genresData from "@/lib/genresData";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa6";
@@ -15,16 +16,19 @@ export default async function Stream({ searchParams: { movie } }: props) {
   const poster = `https://image.tmdb.org/t/p/original/${newMovie.poster_path}`;
 
   const getGenreNamesByIds = (genreIds: number[]) => {
-    return newMovie.genre_ids.map((id: number) => {
+    return genreIds.map((id: number) => {
       const genre = genresData.genres.find((genre) => genre.id === id);
       return genre ? genre.name : "Unknown Genre";
     });
   };
 
   const movieGenreNames = getGenreNamesByIds(newMovie.genre_ids);
+
+  const similarMovies = await fetchSimilarMovieData(newMovie.id);
+
   return (
     <main className="mt-20 text-white">
-      <div className="flex md:flex-row flex-col items-start gap-10 mx-6 md:mx-20">
+      <div className="flex md:flex-row flex-col items-start gap-10 mx-6 md:mx-8 lg:mx-20">
         <div className="w-fit overflow-hidden">
           <Image
             src={poster}
@@ -87,11 +91,13 @@ export default async function Stream({ searchParams: { movie } }: props) {
         </div>
       </div>
 
-      <div className="mt-20 mb-10">
-        <div className="mt-10">
-          {/* <CarouselContainer category="MORE LIKE THIS" /> */}
+      {similarMovies && (
+        <div className="my-10 md:mt-20">
+          <div className="mt-10">
+            <CarouselContainer category="MORE LIKE THIS" data={similarMovies} />
+          </div>
         </div>
-      </div>
+      )}
     </main>
   );
 }
