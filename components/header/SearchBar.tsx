@@ -7,7 +7,7 @@ import { useState } from "react";
 export default function SearchBar({
   onClickSearch,
 }: {
-  onClickSearch: () => void;
+  onClickSearch?: () => void;
 }) {
   const [searchName, setSearchName] = useState<string>("");
 
@@ -19,7 +19,9 @@ export default function SearchBar({
     }
     router.push(`/search?keyword=${encodeURIComponent(searchName)}`);
     setSearchName("");
-    onClickSearch();
+    if (onClickSearch) {
+      onClickSearch();
+    }
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
