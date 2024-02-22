@@ -13,7 +13,7 @@ export default function CarouselCard({ data }: any) {
       <Link
         href={{
           pathname: "/stream",
-          query: { movie: JSON.stringify(data) },
+          query: { movie: data.id },
         }}
       >
         <div className="w-full overflow-hidden rounded-md">

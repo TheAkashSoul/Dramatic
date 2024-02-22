@@ -35,16 +35,16 @@ export const fetchUpcoming = async () => {
   return Upcoming;
 };
 
-// export const fetchMovieData = async (external_id: number) => {
-//   try {
-//     const data = await getApiResponse(`/find/${external_id}?external_source=`);
-//     const MovieData = data.results;
+export const fetchMovieData = async (id: number) => {
+  try {
+    const data = await getApiResponse(`/movie/${id}?append_to_response=videos`);
+    const MovieData = data;
 
-//     return MovieData;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
+    return MovieData;
+  } catch (error) {
+    console.log(error);
+  }
+};
 
 export const fetchSimilarMovieData = async (movie_id: number) => {
   try {

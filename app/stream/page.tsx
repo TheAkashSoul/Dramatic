@@ -1,4 +1,4 @@
-import { fetchSimilarMovieData } from "@/actions/movieData";
+import { fetchMovieData, fetchSimilarMovieData } from "@/actions/movieData";
 import CarouselContainer from "@/components/common/CarouselContainer";
 import genresData from "@/lib/genresData";
 import Image from "next/image";
@@ -7,26 +7,17 @@ import { FaPlus } from "react-icons/fa6";
 
 type props = {
   searchParams: {
-    movie: any;
+    movie: number;
   };
 };
 
 export default async function Stream({ searchParams: { movie } }: props) {
-  const newMovie = JSON.parse(movie);
+  const newMovie = await fetchMovieData(movie);
   const poster = newMovie.poster_path
     ? `https://image.tmdb.org/t/p/original/${newMovie.poster_path}`
     : "https://image.tmdb.org/t/p/original/vbLxDKfo8fYC8ISKKrJczNbGKLP.jpg";
 
-  const getGenreNamesByIds = (genreIds: number[]) => {
-    return genreIds.map((id: number) => {
-      const genre = genresData.genres.find((genre) => genre.id === id);
-      return genre ? genre.name : "Unknown Genre";
-    });
-  };
-
-  const movieGenreNames = getGenreNamesByIds(newMovie.genre_ids);
-
-  const similarMovies = await fetchSimilarMovieData(newMovie.id);
+  const similarMovies = await fetchSimilarMovieData(movie);
 
   return (
     <main className="mt-20 text-white">
@@ -37,7 +28,7 @@ export default async function Stream({ searchParams: { movie } }: props) {
             alt="image"
             height={300}
             width={240}
-            className="object-cover"
+            className="object-cover w-auto"
           />
         </div>
 
@@ -50,9 +41,9 @@ export default async function Stream({ searchParams: { movie } }: props) {
           </p>
           <p className="font-medium text-base text-[#9F1D00]">GENRES</p>
           <div className="flex flex-row gap-3 flex-wrap">
-            {movieGenreNames?.map((genreName: string, index: number) => (
-              <p key={index} className="font-medium text-sm">
-                {genreName}
+            {newMovie?.genres?.map((genreName: any) => (
+              <p key={genreName.id} className="font-medium text-sm">
+                {genreName.name}
               </p>
             ))}
           </div>
@@ -93,7 +84,7 @@ export default async function Stream({ searchParams: { movie } }: props) {
         </div>
       </div>
 
-      {similarMovies.length > 0 && (
+      {similarMovies?.length > 0 && (
         <div className="my-10 md:mt-20">
           <div className="mt-10">
             <CarouselContainer category="MORE LIKE THIS" data={similarMovies} />
