@@ -1,6 +1,7 @@
+"use client";
+
 import { fetchMovieData, fetchSimilarMovieData } from "@/actions/movieData";
 import CarouselContainer from "@/components/common/CarouselContainer";
-import genresData from "@/lib/genresData";
 import Image from "next/image";
 import { FaPlay } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
@@ -19,6 +20,14 @@ export default async function Stream({ searchParams: { movie } }: props) {
 
   const similarMovies = await fetchSimilarMovieData(movie);
 
+  const watchMovie = () => {
+    console.log("watch");
+  };
+
+  const addToMyList = () => {
+    console.log("add mylist");
+  };
+
   return (
     <main className="mt-20 text-white">
       <div className="flex md:flex-row flex-col items-start gap-10 mx-6 md:mx-8 lg:mx-20">
@@ -28,7 +37,7 @@ export default async function Stream({ searchParams: { movie } }: props) {
             alt="image"
             height={300}
             width={240}
-            className="object-cover w-auto"
+            className="object-cover"
           />
         </div>
 
@@ -49,11 +58,17 @@ export default async function Stream({ searchParams: { movie } }: props) {
           </div>
 
           <div className="flex flex-col w-fit md:flex-row gap-3 mt-3">
-            <button className="bg-[#5436A9] px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1">
+            <button
+              onClick={watchMovie}
+              className="bg-[#5436A9] px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1"
+            >
               WATCH
               <FaPlay size={16} />
             </button>
-            <button className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1">
+            <button
+              onClick={addToMyList}
+              className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1"
+            >
               MY LIST
               <FaPlus size={16} />
             </button>
