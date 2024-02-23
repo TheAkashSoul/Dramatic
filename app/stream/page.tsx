@@ -17,6 +17,7 @@ export default function Stream({ searchParams: { movie } }: props) {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [newMovie, setNewMovie] = useState<any>();
   const [similarMovies, setSimilarMovies] = useState<any>();
+  const [videoKey, setVideoKey] = useState<string>();
 
   const options = {
     method: "GET",
@@ -35,6 +36,11 @@ export default function Stream({ searchParams: { movie } }: props) {
       const data = await res.json();
 
       if (data) {
+        const index = data?.videos.results?.findIndex(
+          (result: any) => result.type === "Trailer"
+        );
+        const key = newMovie?.videos.results[index].key;
+        setVideoKey(key);
         setNewMovie(data);
       }
     } catch (err) {
@@ -153,8 +159,16 @@ export default function Stream({ searchParams: { movie } }: props) {
           </div>
         </div>
       )}
-
-      {showModal && <ModalStream />}
+      <div className="">
+        {showModal && (
+          <ModalStream
+            title={newMovie?.original_title || ""}
+            overview={newMovie?.overview || ""}
+            videoKey={videoKey || ""}
+            closeModal={watchMovie}
+          />
+        )}
+      </div>
     </main>
   );
 }
