@@ -1,13 +1,31 @@
 "use client";
 
+import { addMovie, removeMovie } from "@/redux/slice";
 import Image from "next/image";
 import Link from "next/link";
 import { GoPlusCircle } from "react-icons/go";
+import { FiMinusCircle } from "react-icons/fi";
+import { useDispatch, useSelector } from "react-redux";
 
 export default function CarouselCard({ data }: any) {
   const poster = data.poster_path
     ? `https://image.tmdb.org/t/p/original/${data.poster_path}`
     : "https://image.tmdb.org/t/p/original/vbLxDKfo8fYC8ISKKrJczNbGKLP.jpg";
+
+  const dispatch = useDispatch();
+  const addedList = useSelector((data: any) => data.movies);
+
+  const isMovieAdded = addedList.some(
+    (movie: any) => movie.movie.id === data.id
+  );
+
+  const addToMyList = () => {
+    dispatch(addMovie(data));
+  };
+
+  const removeFromMyList = () => {
+    dispatch(removeMovie(data.id));
+  };
   return (
     <div className="bg-[#05080B] w-fit rounded-md overflow-hidden hover:scale-105 transition-all">
       <Link
@@ -36,12 +54,19 @@ export default function CarouselCard({ data }: any) {
           <p className="text-[#FFC907] font-medium text-sm">
             {data.vote_average.toFixed(1)}
           </p>
-          <button
-            onClick={() => console.log("added")}
-            className="p-2 hover:text-[#FFC907]"
-          >
-            <GoPlusCircle size={20} />
-          </button>
+
+          {isMovieAdded ? (
+            <button
+              onClick={removeFromMyList}
+              className="p-2 hover:text-[#ea5d48]"
+            >
+              <FiMinusCircle size={20} />
+            </button>
+          ) : (
+            <button onClick={addToMyList} className="p-2 hover:text-[#FFC907]">
+              <GoPlusCircle size={20} />
+            </button>
+          )}
         </div>
       </div>
     </div>
