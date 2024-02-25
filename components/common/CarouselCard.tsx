@@ -6,17 +6,18 @@ import Link from "next/link";
 import { GoPlusCircle } from "react-icons/go";
 import { FiMinusCircle } from "react-icons/fi";
 import { useDispatch, useSelector } from "react-redux";
+import { Movie, MovieArrayItem, MovieData } from "@/lib/types";
 
-export default function CarouselCard({ data }: any) {
-  const poster = data.poster_path
-    ? `https://image.tmdb.org/t/p/original/${data.poster_path}`
+export default function CarouselCard({ data }: { data: Movie }) {
+  const poster = data?.poster_path
+    ? `https://image.tmdb.org/t/p/original/${data?.poster_path}`
     : "https://image.tmdb.org/t/p/original/vbLxDKfo8fYC8ISKKrJczNbGKLP.jpg";
 
   const dispatch = useDispatch();
-  const addedList = useSelector((data: any) => data.movies);
+  const addedList = useSelector((data: MovieData) => data.movies);
 
   const isMovieAdded = addedList.some(
-    (movie: any) => movie.movie.id === data.id
+    (movie: MovieArrayItem) => movie.movie.id === data.id
   );
 
   const addToMyList = () => {

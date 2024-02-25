@@ -3,9 +3,19 @@
 import CarouselContainer from "@/components/common/CarouselContainer";
 import ModalStream from "@/components/common/ModalStream";
 import Image from "next/image";
+import { addMovie, removeMovie } from "@/redux/slice";
+import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { FaPlay } from "react-icons/fa6";
 import { FaPlus } from "react-icons/fa6";
+import { FiMinus } from "react-icons/fi";
+import {
+  MovieArray,
+  MovieArrayItem,
+  MovieData,
+  MovieDetails,
+  VideoItem,
+} from "@/lib/types";
 
 type props = {
   searchParams: {
@@ -13,10 +23,14 @@ type props = {
   };
 };
 
+type genres = {
+  id: number;
+  name: string;
+};
 export default function Stream({ searchParams: { movie } }: props) {
   const [showModal, setShowModal] = useState<boolean>(false);
-  const [newMovie, setNewMovie] = useState<any>();
-  const [similarMovies, setSimilarMovies] = useState<any>();
+  const [newMovie, setNewMovie] = useState<MovieDetails>();
+  const [similarMovies, setSimilarMovies] = useState<MovieArray>();
   const [videoKey, setVideoKey] = useState<string>();
 
   const options = {
@@ -37,8 +51,9 @@ export default function Stream({ searchParams: { movie } }: props) {
 
       if (data) {
         const index = data?.videos.results?.findIndex(
-          (result: any) => result.type === "Trailer"
+          (result: VideoItem) => result.type === "Trailer"
         );
+
         const key = newMovie?.videos.results[index].key;
         setVideoKey(key);
         setNewMovie(data);
@@ -73,12 +88,23 @@ export default function Stream({ searchParams: { movie } }: props) {
     ? `https://image.tmdb.org/t/p/original${newMovie.poster_path}`
     : "https://image.tmdb.org/t/p/original/vbLxDKfo8fYC8ISKKrJczNbGKLP.jpg";
 
-  const watchMovie = () => {
-    setShowModal(!showModal);
+  const dispatch = useDispatch();
+  const addedList = useSelector((data: MovieData) => data?.movies);
+
+  const isMovieAdded = addedList.some(
+    (movie: MovieArrayItem) => movie?.movie?.id === newMovie?.id
+  );
+
+  const addMovieToMyList = () => {
+    dispatch(addMovie(newMovie));
   };
 
-  const addToMyList = () => {
-    // console.log("add mylist");
+  const removeMovieFromMyList = () => {
+    dispatch(removeMovie(newMovie?.id));
+  };
+
+  const watchMovie = () => {
+    setShowModal(!showModal);
   };
 
   return (
@@ -103,7 +129,7 @@ export default function Stream({ searchParams: { movie } }: props) {
           </p>
           <p className="font-medium text-base text-[#9F1D00]">GENRES</p>
           <div className="flex flex-row gap-3 flex-wrap">
-            {newMovie?.genres?.map((genreName: any) => (
+            {newMovie?.genres?.map((genreName: genres) => (
               <p key={genreName.id} className="font-medium text-sm">
                 {genreName.name}
               </p>
@@ -118,13 +144,23 @@ export default function Stream({ searchParams: { movie } }: props) {
               WATCH
               <FaPlay size={16} />
             </button>
-            <button
-              onClick={addToMyList}
-              className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1"
-            >
-              MY LIST
-              <FaPlus size={16} />
-            </button>
+            {isMovieAdded ? (
+              <button
+                onClick={removeMovieFromMyList}
+                className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1"
+              >
+                Remove
+                <FiMinus size={16} />
+              </button>
+            ) : (
+              <button
+                onClick={addMovieToMyList}
+                className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1"
+              >
+                MY LIST
+                <FaPlus size={16} />
+              </button>
+            )}
           </div>
 
           <div className="flex flex-col w-full lg:w-[40%]">
@@ -152,7 +188,7 @@ export default function Stream({ searchParams: { movie } }: props) {
         </div>
       </div>
 
-      {similarMovies?.length > 0 && (
+      {similarMovies && similarMovies?.length > 0 && (
         <div className="my-10 md:mt-20">
           <div className="mt-10">
             <CarouselContainer category="MORE LIKE THIS" data={similarMovies} />

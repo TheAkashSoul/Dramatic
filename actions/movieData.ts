@@ -35,28 +35,6 @@ export const fetchUpcoming = async () => {
   return Upcoming;
 };
 
-// export const fetchMovieData = async (id: number) => {
-//   try {
-//     const data = await getApiResponse(`/movie/${id}?append_to_response=videos`);
-//     const MovieData = data;
-
-//     return MovieData;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
-// export const fetchSimilarMovieData = async (movie_id: number) => {
-//   try {
-//     const data = await getApiResponse(`/movie/${movie_id}/similar`);
-//     const SimilarMovie = data.results;
-
-//     return SimilarMovie;
-//   } catch (error) {
-//     console.log(error);
-//   }
-// };
-
 export const fetchSearchMovieData = async (movie_name: string) => {
   try {
     const data = await getApiResponse(`/search/movie?query=${movie_name}`);

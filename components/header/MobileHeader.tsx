@@ -79,35 +79,15 @@ const MenuMobile = ({ toggleMenu }: { toggleMenu: () => void }) => {
         href="/"
         className="font-medium text-[#FFFFFF] hover:bg-gray-600 px-2 rounded-md text-sm w-full"
       >
-        Account
+        Home
       </Link>
-      <Link
-        onClick={toggleMenu}
-        href="/"
-        className="font-medium text-[#FFFFFF] hover:bg-gray-600 px-2 rounded-md text-sm w-full"
-      >
-        Notifications
-      </Link>
-      <Link
-        onClick={toggleMenu}
-        href="/"
-        className="font-medium text-[#FFFFFF] hover:bg-gray-600/30 px-2 rounded-md text-sm w-full"
-      >
-        Settings
-      </Link>
+
       <Link
         onClick={toggleMenu}
         href="/mylist"
         className="font-medium text-[#FFFFFF] hover:bg-gray-600 px-2 rounded-md text-sm w-full"
       >
         My List
-      </Link>
-      <Link
-        onClick={toggleMenu}
-        href="/"
-        className="font-medium text-[#FFFFFF] hover:bg-gray-600 px-2 rounded-md text-sm w-full"
-      >
-        Logout
       </Link>
     </main>
   );

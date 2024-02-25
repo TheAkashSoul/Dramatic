@@ -7,14 +7,15 @@ import {
 } from "@/actions/movieData";
 import CarouselContainer from "@/components/common/CarouselContainer";
 import CarouselBanner from "@/components/home/CarouselBanner";
+import { MovieArray } from "@/lib/types";
 
 export default async function Home() {
-  const trendingMovie = await fetchTrending();
+  const trendingMovie: MovieArray = await fetchTrending();
 
-  const nowPlaying = await fetchNowPlaying();
-  const popular = await fetchPopular();
-  const topRated = await fetchTopRated();
-  const upcoming = await fetchUpcoming();
+  const nowPlaying: MovieArray = await fetchNowPlaying();
+  const popular: MovieArray = await fetchPopular();
+  const topRated: MovieArray = await fetchTopRated();
+  const upcoming: MovieArray = await fetchUpcoming();
 
   return (
     <main className="bg-[#000000] min-h-screen text-[#FFFFFF] mb-10 md:mb-20">

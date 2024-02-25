@@ -3,21 +3,18 @@
 import * as React from "react";
 import { useCallback } from "react";
 import Autoplay from "embla-carousel-autoplay";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
 } from "@/components/ui/carousel";
 import Banner from "./Banner";
-import { Movie } from "@/lib/types";
+import { Movie, MovieArray } from "@/lib/types";
 
 export default function CarouselBanner({
   trendingMovies,
 }: {
-  trendingMovies: any;
+  trendingMovies: MovieArray;
 }) {
   const autoplay = useCallback(
     Autoplay({
@@ -35,7 +32,7 @@ export default function CarouselBanner({
       }}
     >
       <CarouselContent>
-        {trendingMovies?.map((movie: { id: React.Key | null | undefined }) => (
+        {trendingMovies?.map((movie: Movie) => (
           <CarouselItem key={movie.id}>
             <Banner movies={movie} />
           </CarouselItem>

@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Card, CardContent } from "@/components/ui/card";
 import {
   Carousel,
   CarouselContent,
@@ -9,10 +8,11 @@ import {
 } from "@/components/ui/carousel";
 
 import CarouselCard from "./CarouselCard";
+import { Movie, MovieArray } from "@/lib/types";
 
 type props = {
   category: string;
-  data: any;
+  data: MovieArray;
 };
 
 export default function CarouselContainer({ category, data }: props) {
@@ -30,7 +30,7 @@ export default function CarouselContainer({ category, data }: props) {
         className="w-full"
       >
         <CarouselContent>
-          {data?.map((movie: any) => (
+          {data?.map((movie: Movie) => (
             <CarouselItem
               key={movie.id}
               className="basis-2/5 md:basis-1/5 lg:basis-1/6"

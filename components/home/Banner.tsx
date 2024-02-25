@@ -1,9 +1,9 @@
 import genresData from "@/lib/genresData";
+import { Movie } from "@/lib/types";
 import Link from "next/link";
 import { MdOutlineArrowForwardIos } from "react-icons/md";
-import { FaPlus } from "react-icons/fa6";
 
-export default function Banner({ movies }: { movies: any }) {
+export default function Banner({ movies }: { movies: Movie }) {
   const backGroundImage = `https://image.tmdb.org/t/p/original${movies.backdrop_path}`;
 
   const genres = genresData;
@@ -51,17 +51,13 @@ export default function Banner({ movies }: { movies: any }) {
             <Link
               href={{
                 pathname: "/stream",
-                query: { movie: JSON.stringify(movies) },
+                query: { movie: movies?.id },
               }}
               className="bg-[#5436A9] px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1"
             >
               DETAILS
               <MdOutlineArrowForwardIos size={16} />
             </Link>
-            <button className="bg-[#5C5C5C] backdrop-blur-md px-4 py-2 rounded-full text-xs md:text-sm items-center justify-center flex flex-row gap-1">
-              MY LIST
-              <FaPlus size={16} />
-            </button>
           </div>
         </div>
       </div>
