@@ -34,11 +34,11 @@ export default function CarouselCard({ data }: { data: Movie }) {
           query: { movie: data.id },
         }}
       >
-        <div className="w-full overflow-hidden rounded-md bg-white">
+        <div className="w-full overflow-hidden rounded-md">
           <img
             src={poster}
             alt={data?.original_title}
-            className="h-full w-200 object-cover"
+            className="h-300 w-200 object-cover"
           />
           {/* <Image
             src={poster}
