@@ -1,7 +1,6 @@
 "use client";
 
 import { addMovie, removeMovie } from "@/redux/slice";
-import Image from "next/image";
 import Link from "next/link";
 import { GoPlusCircle } from "react-icons/go";
 import { FiMinusCircle } from "react-icons/fi";
@@ -35,25 +34,30 @@ export default function CarouselCard({ data }: { data: Movie }) {
           query: { movie: data.id },
         }}
       >
-        <div className="w-full overflow-hidden rounded-md">
-          <Image
+        <div className="w-full overflow-hidden rounded-md bg-white">
+          <img
+            src={poster}
+            alt={data?.original_title}
+            className="h-full w-200 object-cover"
+          />
+          {/* <Image
             src={poster}
             alt="Image"
             height={400}
             width={300}
             className="object-cover"
-          />
+          /> */}
         </div>
       </Link>
 
       <div className="flex flex-col p-1">
         <p className="font-semibold text-sm line-clamp-1">
-          {data.original_title}
+          {data?.original_title}
         </p>
         <p className="font-thin text-xs">{data.release_date.slice(0, 4)}</p>
         <div className="flex flex-row items-center justify-between">
           <p className="text-[#FFC907] font-medium text-sm">
-            {data.vote_average.toFixed(1)}
+            {data?.vote_average.toFixed(1)}
           </p>
 
           {isMovieAdded ? (

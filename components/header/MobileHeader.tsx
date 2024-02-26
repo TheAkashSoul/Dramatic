@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import logo from "../../public/assets/DRAMATIC.png";
 import { FiSearch } from "react-icons/fi";
@@ -32,7 +31,7 @@ export default function MobileHeader() {
     <header className="bg-[#504179]/30 backdrop-blur-md h-16 md:hidden flex items-center fixed top-0 left-0 w-full z-50">
       <div className="flex items-center justify-between flex-row w-full">
         <Link href="/" className="relative h-5 w-20 mx-6 flex items-center">
-          <Image src={logo} alt="logo" />
+          <img src={logo.src} alt="logo" />
         </Link>
 
         <div className="flex flex-row items-center mr-6 space-x-8">

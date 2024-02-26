@@ -2,7 +2,6 @@
 
 import CarouselContainer from "@/components/common/CarouselContainer";
 import ModalStream from "@/components/common/ModalStream";
-import Image from "next/image";
 import { addMovie, removeMovie } from "@/redux/slice";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
@@ -111,13 +110,18 @@ export default function Stream({ searchParams: { movie } }: props) {
     <main className="mt-20 text-white relative">
       <div className="flex md:flex-row flex-col items-start gap-10 mx-6 md:mx-8 lg:mx-20">
         <div className="w-fit overflow-hidden">
-          <Image
+          <img
+            src={poster}
+            alt={newMovie?.original_title}
+            className="h-auto w-60 object-cover"
+          />
+          {/* <Image
             src={poster}
             alt="image"
             height={300}
             width={240}
             className="object-cover"
-          />
+          /> */}
         </div>
 
         <div className="w-full md:w-[60%] mb-4">

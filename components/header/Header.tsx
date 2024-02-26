@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import logo from "../../public/assets/DRAMATIC.png";
 import Link from "next/link";
 import SearchBar from "./SearchBar";
@@ -17,7 +16,7 @@ export default function Header() {
           href={"/"}
           className="relative h-5 w-20 lg:ml-20 lg:mr-20 md:ml-8 flex items-center"
         >
-          <Image src={logo} alt="logo" />
+          <img src={logo.src} alt="logo" />
         </Link>
 
         <Link
